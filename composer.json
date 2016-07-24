@@ -1,0 +1,6 @@
+{
+  "name": "ecomdev/magento-2-performance-bootstrap",
+  "description": "Magento 2.0 performance bootstrap test",
+  "license": "MIT",
+  "minimum-stability":"dev"
+}
