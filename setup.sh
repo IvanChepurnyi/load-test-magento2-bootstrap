@@ -49,9 +49,9 @@ MYSQLHOST=$(awk -F "=" '/host/ {print $2}' ${HOME}/.my.cnf | sed -e 's/^[ \t]*//
 
 dbfile=$dir/db/data.sql.gz
 
-if [ -f $dir/db/data-$databaseVersion-$version.sql.gz ]
+if [ -f $dir/db/data-$version-$databaseVersion.sql.gz ]
 then
-   dbfile=$dir/db/data-$databaseVersion-$version.sql.gz
+   dbfile=$dir/db/data-$version-$databaseVersion.sql.gz
 elif [ -f $dir/db/data-$databaseVersion.sql.gz ]
 then
    dbfile=$dir/db/data-$databaseVersion.sql.gz
