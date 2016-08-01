@@ -83,7 +83,7 @@ n98-magerun2 config:set web/unsecure/base_url http://$domain/
 n98-magerun2 config:set web/secure/base_url http://$domain/
 n98-magerun2 config:set catalog/frontend/flat_catalog_category 1
 n98-magerun2 config:set catalog/frontend/flat_catalog_product 1
-# Make same category page positions as in Magento 2.0
+# Make same category product per page positions as in Magento 1.0
 n98-magerun2 config:set catalog/frontend/grid_per_page_values "12,24,36"
 n98-magerun2 config:set catalog/frontend/grid_per_page "12"
 n98-magerun2 config:set system/full_page_cache/caching_application 2
@@ -92,6 +92,7 @@ n98-magerun2 config:set system/full_page_cache/ttl 86400
 composer config optimize-autoloader true
 
 bin/magento cache:flush
+bin/magento indexer:reindex cataloginventory_stock
 bin/magento indexer:reindex
 bin/magento cache:enable
 bin/magento deploy:mode:set production
