@@ -77,10 +77,6 @@ bin/magento setup:install --db-host="$MYSQLHOST" --db-name="$database" --db-user
     --base-url="http://$domain/" --language=en_US --timezone=Europe/Amsterdam \
     --currency=USD --use-rewrites=1
 
-# Disabling swatches as they are not enabled in Magento 1.x database provided by MageCore
-# In Magento 2.0 this functionality is enabled by default, so for testing apple to apple, we need to disable it.
-bin/magento module:disable Magento_Swatches
-
 # Enable redis cache in Magento 2
 LOCAL_XML=$dir/magento/app/etc/env.php php $dir/config/configure-redis.php
 
@@ -94,13 +90,14 @@ n98-magerun2 config:set catalog/frontend/grid_per_page "12"
 n98-magerun2 config:set system/full_page_cache/caching_application 2
 n98-magerun2 config:set system/full_page_cache/ttl 86400
 
-composer config optimize-autoloader true
-
 bin/magento cache:flush
 bin/magento indexer:reindex cataloginventory_stock
 bin/magento indexer:reindex
 bin/magento cache:enable
 bin/magento deploy:mode:set production
+
+composer config optimize-autoloader true
+composer dump-autoload
 
 cd $dir
 
