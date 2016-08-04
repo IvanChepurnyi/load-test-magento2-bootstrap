@@ -90,7 +90,7 @@ n98-magerun2 config:set catalog/frontend/grid_per_page "12"
 n98-magerun2 config:set system/full_page_cache/caching_application 2
 n98-magerun2 config:set system/full_page_cache/ttl 86400
 n98-magerun2 config:set dev/grid/async_indexing 1
-n98-magerun2 config:set dev/sales_email/async_sending 1
+n98-magerun2 config:set sales_email/general/async_sending 1
 
 bin/magento cache:flush
 bin/magento indexer:reindex cataloginventory_stock
