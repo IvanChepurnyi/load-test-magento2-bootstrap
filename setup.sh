@@ -64,6 +64,14 @@ echo "Importing $dbfile"
 
 gunzip < $dbfile | mysql $database
 
+fixFile=$dir/db/data-fix-$version.sql
+
+if [ -f $fixFile ]
+then
+   echo "Fixing setup_module table for $version, as structure didn't change but module setup version did"
+   mysql $database < $fixFile
+fi
+
 # Install magento configure it
 mkdir $dir/magento
 cd $dir/magento
