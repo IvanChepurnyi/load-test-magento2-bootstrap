@@ -64,6 +64,14 @@ echo "Importing $dbfile"
 
 gunzip < $dbfile | mysql $database
 
+fixFile=$dir/db/data-fix-$version.sql
+
+if [ -f $fixFile ]
+then
+   echo "Fixing setup_module table for $version, as structure didn't change but module setup version did"
+   mysql $database < $fixFile
+fi
+
 # Install magento configure it
 mkdir $dir/magento
 cd $dir/magento
@@ -89,6 +97,8 @@ n98-magerun2 config:set catalog/frontend/grid_per_page_values "12,24,36"
 n98-magerun2 config:set catalog/frontend/grid_per_page "12"
 n98-magerun2 config:set system/full_page_cache/caching_application 2
 n98-magerun2 config:set system/full_page_cache/ttl 86400
+n98-magerun2 config:set dev/grid/async_indexing 1
+n98-magerun2 config:set sales_email/general/async_sending 1
 
 bin/magento cache:flush
 bin/magento indexer:reindex cataloginventory_stock
