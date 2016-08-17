@@ -1,0 +1,32 @@
+<?php
+/**
+ * EcomDev M2 Ajax review fix
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/osl-3.0.php
+ *
+ * @copyright  Copyright (c) 2016 EcomDev BV (http://www.ecomdev.org)
+ * @license    https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Ivan Chepurnyi <ivan@ecomdev.org>
+ */
+?>
+<div id="product-review-container" data-role="product-review"></div>
+<?php echo $block->getChildHtml(); ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "EcomDev_AjaxReviewFix/js/process-reviews": <?php
+                /* @noEscape */ echo $this->helper(\Magento\Framework\Json\Helper\Data::class)
+                        ->jsonEncode([
+                            'productReviewUrl' => $block->getProductReviewUrl(),
+                            'reviewLoadHandleSelector' => $block->getReviewLoadHandleSelector()
+                        ]);
+            ?>
+        }
+    }
+</script>

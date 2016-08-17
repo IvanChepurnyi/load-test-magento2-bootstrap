@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * EcomDev M2 Ajax review fix
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/osl-3.0.php
+ *
+ * @copyright  Copyright (c) 2016 EcomDev BV (http://www.ecomdev.org)
+ * @license    https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Ivan Chepurnyi <ivan@ecomdev.org>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="reviews.tab" template="EcomDev_AjaxReviewFix::review.phtml">
+            <arguments>
+                <argument name="review_load_handle_selector" xsi:type="string">a[href="#reviews"]</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
