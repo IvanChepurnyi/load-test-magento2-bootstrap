@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * EcomDev M2 Varnish Cache Fix
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/osl-3.0.php
+ *
+ * @copyright  Copyright (c) 2016 EcomDev BV (http://www.ecomdev.org)
+ * @license    https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Ivan Chepurnyi <ivan@ecomdev.org>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="EcomDev\PageCacheFix\Model\Observer\ProcessLayoutRenderElement">
+        <arguments>
+            <argument name="ignoredHandlePatterns" xsi:type="array">
+                <item name="catalog_with_id" xsi:type="string">/^catalog.*?_id_/</item>
+                <item name="category_type" xsi:type="string">/^catalog_category_view_type/</item>
+                <item name="product_type" xsi:type="string">/^catalog_category_view_type/</item>
+                <item name="product_type" xsi:type="string">/^catalog_product_view_type/</item>
+                <item name="product_sku" xsi:type="string">/^catalog_product_view_sku/</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
