@@ -142,10 +142,9 @@ function setup_magento() {
 try_restore_from_cache
 
 bin/magento deploy:mode:set production
-
-composer config optimize-autoloader true
-composer dump-autoload
 bin/magento cache:flush
+
+$dir/optimize-composer.sh
 
 cd $dir
 
