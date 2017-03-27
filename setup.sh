@@ -88,9 +88,13 @@ function try_restore_from_cache() {
        --admin-user=admin --admin-password=Password123 --admin-email=test@example.com \
        --base-url="http://$domain/" --language=en_US --timezone=Europe/Amsterdam \
        --currency=USD --use-rewrites=1
-      
-      # Enable redis cache in Magento 2
-      LOCAL_XML=$dir/magento/app/etc/env.php php $dir/config/configure-redis.php
+   
+      if [[ $NO_REDIS == "" ]]
+      then   
+         # Enable redis cache in Magento 2
+         LOCAL_XML=$dir/magento/app/etc/env.php php $dir/config/configure-redis.php
+      fi
+
       bin/magento cache:flush
       bin/magento cache:enable
    else
@@ -119,7 +123,10 @@ function setup_magento() {
       --currency=USD --use-rewrites=1
 
    # Enable redis cache in Magento 2
-   LOCAL_XML=$dir/magento/app/etc/env.php php $dir/config/configure-redis.php
+   if [[ $NO_REDIS == "" ]]
+   then
+      LOCAL_XML=$dir/magento/app/etc/env.php php $dir/config/configure-redis.php
+   fi
 
    n98-magerun2 config:set web/unsecure/base_url http://$domain/
    n98-magerun2 config:set web/secure/base_url http://$domain/
