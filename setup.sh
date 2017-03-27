@@ -151,8 +151,12 @@ cd $dir
 [ ! -d ../public ] || rm ../public/*.txt
 [ ! -d ../public ] || rmdir ../public
 
-varnishadm vcl.load m2benchmark $dir/config/varnish.vcl
-varnishadm vcl.use m2benchmark
+if [[ $NO_VARNISH == "" ]]
+then
+   varnishadm vcl.load m2benchmark $dir/config/varnish.vcl
+   varnishadm vcl.use m2benchmark
+fi
+
 
 if [[ $NO_IMAGES == "" ]]
 then
