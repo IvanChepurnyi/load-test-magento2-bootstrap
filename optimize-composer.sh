@@ -8,7 +8,7 @@ read -d '' script << PHP
 <?php
 \$composer = json_decode(file_get_contents('composer.json'), true);
 if (!is_array(\$composer['autoload']['psr-0'][''])) {
-    \$composer['autoload']['psr-0'][''] = [\$composer['autoload']['psr-0'][''], 'var/generation'];
+    \$composer['autoload']['psr-0'][''] = [\$composer['autoload']['psr-0'][''], 'generated/code/'];
 }
 if (!isset(\$composer['autoload']['exclude-from-classmap'])) {
     \$composer['autoload']['exclude-from-classmap'] = ['**/dev/**', '**/update/**', '**/Test/**'];
